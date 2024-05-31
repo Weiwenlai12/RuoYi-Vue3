@@ -310,6 +310,7 @@
             <el-icon class="el-icon--upload"><upload-filled /></el-icon>
             <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
             <template #tip>
+               
                <div class="el-upload__tip text-center">
                   <div class="el-upload__tip">
                      <el-checkbox v-model="upload.updateSupport" />是否更新已经存在的用户数据
@@ -568,6 +569,7 @@ function handleAdd() {
 };
 /** 修改按钮操作 */
 function handleUpdate(row) {
+   console.log(row)
   reset();
   const userId = row.userId || ids.value;
   getUser(userId).then(response => {

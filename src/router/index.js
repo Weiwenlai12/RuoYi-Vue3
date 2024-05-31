@@ -26,6 +26,20 @@ import Layout from '@/layout'
 
 // 公共路由
 export const constantRoutes = [
+  //table
+  {
+    name:'table',
+    path: '/table',
+    component: () => import('@/views/debug/table/index.vue'),
+    hidden: true
+  },
+    //form
+    {
+      name:'table',
+      path: '/form',
+      component: () => import('@/views/debug/form/index.vue'),
+      hidden: true
+    },
   {
     path: '/redirect',
     component: Layout,
