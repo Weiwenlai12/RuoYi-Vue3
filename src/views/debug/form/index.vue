@@ -40,18 +40,60 @@
       </template>
     </el-dialog>
 
+<e-charts class="charts" :option="option"></e-charts>
+
+
+
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue';
+
+import { ref , computed } from 'vue';
 const pdfDialogVisible = ref(false)
 const wordDialogVisible = ref(false)
 
 const pdfUrl = "../testPdf.pdf"
 const wordUrl = "../test.docx"
+let date=['111222','111333','111444','111555']
 
+const data=ref([
+  {value: 50,name:'A'},
+  {value: 70,name:'B'},
+  {value: 110,name:'C'},
+  {value: 60,name:'D'},
+  {value: 30,name:'E'},
+  {value: 60,name:'F'},
+  {value: 90,name:'G'}
+])
+
+const namePage =computed(()=>{
+  return {
+    
+  }
+})
+const option = computed(()=>{
+  return {
+    xAxis: {
+    type: 'category',
+    data: data.value.map(d=>d.name)
+  },
+  yAxis: {
+    type: 'value'
+  },
+  series: [
+    {
+      data: data.value.map(d=>d.value),
+      type: 'line'
+    }
+  ]
+  }
+});
 
 </script>
 
-<style scoped></style>
+<style scoped>
+.charts{
+  height:400px;
+}
+</style>
