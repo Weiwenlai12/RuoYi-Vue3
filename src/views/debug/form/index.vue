@@ -40,7 +40,7 @@
       </template>
     </el-dialog>
 
-<e-charts class="charts" :option="option"></e-charts>
+<div ref="main" id="idmain" style="width: 100%; height: 400px"></div>
 
 
 
@@ -48,48 +48,49 @@
 </template>
 
 <script setup>
-
-import { ref , computed } from 'vue';
+import * as echarts from "echarts";
+const main = ref() 
+import { ref , computed, onMounted } from 'vue';
 const pdfDialogVisible = ref(false)
 const wordDialogVisible = ref(false)
-
 const pdfUrl = "../testPdf.pdf"
 const wordUrl = "../test.docx"
 let date=['111222','111333','111444','111555']
 
-const data=ref([
-  {value: 50,name:'A'},
-  {value: 70,name:'B'},
-  {value: 110,name:'C'},
-  {value: 60,name:'D'},
-  {value: 30,name:'E'},
-  {value: 60,name:'F'},
-  {value: 90,name:'G'}
-])
+
+onMounted(()=>{
+  init()
+})
 
 const namePage =computed(()=>{
   return {
     
   }
 })
-const option = computed(()=>{
-  return {
+var option = {
+    title: {
+      text: 'ECharts 入门示例'
+    },
+    tooltip: {},
+    legend: {
+      data: ['销量']
+    },
     xAxis: {
-    type: 'category',
-    data: data.value.map(d=>d.name)
-  },
-  yAxis: {
-    type: 'value'
-  },
-  series: [
-    {
-      data: data.value.map(d=>d.value),
-      type: 'line'
-    }
-  ]
-  }
-});
-
+      data: ['衬衫', '羊毛衫', '雪纺衫', '裤子', '高跟鞋', '袜子']
+    },
+    yAxis: {},
+    series: [
+      {
+        name: '销量',
+        type: 'bar',
+        data: [5, 20, 36, 10, 10, 20]
+      }
+    ]
+  };
+const init=()=>{
+  let chart = echarts.init(document.getElementById('idmain'),'dark');
+  chart.setOption(option)
+}
 </script>
 
 <style scoped>

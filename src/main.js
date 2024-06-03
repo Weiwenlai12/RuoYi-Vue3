@@ -46,6 +46,7 @@ import DictTag from '@/components/DictTag'
 
 import ECharts from 'vue-echarts'
 import 'echarts'
+// import * as echarts from "echarts";
 
 const app = createApp(App)
 
@@ -58,7 +59,6 @@ app.config.globalProperties.handleTree = handleTree
 app.config.globalProperties.addDateRange = addDateRange
 app.config.globalProperties.selectDictLabel = selectDictLabel
 app.config.globalProperties.selectDictLabels = selectDictLabels
-
 // 全局组件挂载
 app.component('DictTag', DictTag)
 app.component('Pagination', Pagination)
